@@ -64,7 +64,6 @@ export default function Pathfindings() {
             return;
           }
           setTimeout(() => {
-            //const node = visitedNodesInOrder[i];
             document.getElementById(`node-${visitedNodesInOrder[i].row}-${visitedNodesInOrder[i].col}`).className =
               'node node-visited';
           }, 10 * i);

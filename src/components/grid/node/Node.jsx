@@ -2,7 +2,7 @@ import React from 'react';
 import './Node.scss';
 
 export const Node = (props) => {
-	const { row, col, isEnd, isStart, isWall, } = props;
+	const { row, col, isEnd, isStart, isWall} = props;
 	const nodeStateClass = isWall ? 'wall' : isStart ? 'start' : isEnd ? 'end' : '';
 
 	return (
