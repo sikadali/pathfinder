@@ -4,7 +4,7 @@ import { Node } from './node/Node'
 import { StoreContext } from '../../utils/StoreProvider';
 
 
-export default function Grid() {
+const Grid = () => {
 
     const {
         grid: [grid, setGrid], 
@@ -70,3 +70,5 @@ export default function Grid() {
 		</div>
     )
 }
+
+export default Grid;

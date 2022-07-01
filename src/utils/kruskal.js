@@ -23,8 +23,6 @@ export function kruskal(mazeMap) {
             openEdgesInOrder.push(edge);
         }
     }
-
-
     console.log(openEdgesInOrder)
     console.log(maze)
     return (openEdgesInOrder);
@@ -44,24 +42,6 @@ const mergeKruskalGroup = (edge, maze) => {
         }
     }
 }
-
-// export function kruskalTwo(mazeMap) {
-    
-//     const {maze, cells, startNode, endNode, hasStart, hasEnd} = mapToArray(mazeMap);
-// 	const openEdgesInOrder = [];
-
-//     openEveryOtherCell(maze);
-// 	const numIterations = (maze.length - 1) * (maze[0].length + 3) / 4;
-// 	for (let i = 0; i < numIterations; i++) {
-// 		iterateKruskal();
-// 	}
-
-// }
-
-// const iterateKruskal = () => {
-// }
-// const openEveryOtherCell = () => {
-// }
 
 
 function getRandomInt(max) {

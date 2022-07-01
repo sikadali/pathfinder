@@ -58,7 +58,6 @@ const mapToArray = (gridMap) => {
     return {grid: grid, nodes: nodes, startNode: startNode, endNode: endNode};
 }
 
-
 const sortNodesByDistance = (unvisitedNodes) => {
     unvisitedNodes.sort((nodeA, nodeB) => {return(nodeA.distance - nodeB.distance)});
 }
