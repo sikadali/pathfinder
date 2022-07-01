@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import './Pathfindings.scss'
 import { StoreContext } from '../../../utils/StoreProvider';
-import { visualizeDijkstra } from '../../animations/Dijkstra';
-import { visualizeAstar } from '../../animations/Astar'; // maybe try to merge these two animations .js
+import { visualizeAlgorithm } from '../../animations/AnimateAlgorithm';
 
 export default function Pathfindings() {
 
@@ -17,11 +16,11 @@ export default function Pathfindings() {
         alert('Select a pathfinding algorithm');
       }
       if (algorithm === 'DIJKSTRA PATH !'){
-        visualizeDijkstra(gridState, grid);
+        visualizeAlgorithm(gridState, grid, 0);
         setAlgorithm('PATH !');
       }
       if (algorithm === 'A* PATH !'){
-        visualizeAstar(gridState, grid);
+        visualizeAlgorithm(gridState, grid, 1);
         setAlgorithm('PATH !');
       }
     }
