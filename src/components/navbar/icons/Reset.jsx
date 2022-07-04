@@ -8,43 +8,55 @@ export default function Reset() {
         gridState: [ gridState, setGridState ]
       } = useContext(StoreContext);
 
-
     const resetGrid = () => {
-        // if there is a start node || end node (possibly some visited nodes) 
-        // => then only all non-wall nodes are reset
-        if(gridState.hasStart || gridState.hasEnd) {
+        visitingReset()
+    }
+    
+    const visitingReset = () => {
+        let hasVisited = false
+        grid.forEach((row) => {
+            row.forEach((node) => {
+                // first check if node has been visited
+                if (document.getElementById(`node-${node.row}-${node.col}`).className ===  "node node-visited" ||
+                    document.getElementById(`node-${node.row}-${node.col}`).className ===  "node node-shortest-path"){
+                       hasVisited = true
+                }
+                if (!node.isWall && !node.isStart && !node.isEnd) {
+                    document.getElementById(`node-${node.row}-${node.col}`)
+                        .className = "node";
+                }
+                if (node.isStart) {
+                    document.getElementById(`node-${node.row}-${node.col}`)
+                        .className = "node start";
+                }
+                if (node.isEnd) {
+                    document.getElementById(`node-${node.row}-${node.col}`)
+                        .className = "node end";
+                }
+            })
+        })
+        if (!hasVisited){ // there had no visited nodes then continue
+            defaultReset()
+        }
+    }
+    const defaultReset = () => {
+        if (gridState.hasWall) { // if there is walls, remove them only
             grid.forEach((row, rowkey) => {
                 row.forEach((node, nodekey) => {
-                    if (!node.isWall && !node.isStart && !node.isEnd) {
-                        // reset the node properties
-                        // setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
-                        //     .set(nodekey, {...node, isEnd: false, isStart: false})) );
-                        // reset the node style, in case it was visited by an algorithm
-                        document.getElementById(`node-${node.row}-${node.col}`)
-                            .className = "node";
-                    }
-                    if (node.isStart) {
-                        document.getElementById(`node-${node.row}-${node.col}`)
-                            .className = "node start";
-                    }
-                    if (node.isEnd) {
-                        document.getElementById(`node-${node.row}-${node.col}`)
-                            .className = "node end";
+                    // reset the wall node properties
+                    if (node.isWall) {
+                        setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
+                        .set(nodekey, {...node, isWall: false})) );
                     }
                 })
             })
-            // setGridState({...gridState, hasEnd: false, hasStart: false});
-        }
-        // else, remove the potential wall nodes present
-        else{
+            setGridState({...gridState, hasWall: false});
+        } else { // else, there is only start & end node left, remove them
             grid.forEach((row, rowkey) => {
                 row.forEach((node, nodekey) => {
-                    // reset the node properties
+                    // reset the start & end nodes' properties
                     setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
-                        .set(nodekey, {...node, isWall: false, isEnd: false, isStart: false})) );
-                    // reset the node style, in case it was visited by an algorithm
-                    document.getElementById(`node-${node.row}-${node.col}`)
-                        .className = "node";
+                        .set(nodekey, {...node, isEnd: false, isStart: false})) );
                 })
             })
             setGridState({...gridState, hasEnd: false, hasStart: false});

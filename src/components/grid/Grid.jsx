@@ -16,6 +16,7 @@ const Grid = () => {
             if(gridState.hasEnd) {
                 setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
 							.set(nodekey, {...node, isWall: true, isEnd: false, isStart: false})) );
+                setGridState({...gridState, hasWall: true});
             }
             else{
                 setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
@@ -27,7 +28,7 @@ const Grid = () => {
             setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
 							.set(nodekey, {...node, isWall: false, isEnd: false, isStart: true})) );
             setGridState({...gridState, hasStart: true});
-        }        
+        }     
 	};
 
     const clearNode = (rowkey, nodekey, node) => {
@@ -36,6 +37,9 @@ const Grid = () => {
         }
         if(node.isEnd){
             setGridState({...gridState, hasEnd: false});
+        }
+        if(node.isWall){
+            setGridState({...gridState, hasWall: false});
         }
 		setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
 							.set(nodekey, {...node, isWall: false, isEnd: false, isStart: false})) );

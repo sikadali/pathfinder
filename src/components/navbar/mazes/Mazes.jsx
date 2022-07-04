@@ -6,7 +6,7 @@ export default function Mazes() {
 
 	const {
         grid: [grid, setGrid], 
-        gridState: [ gridState,  ]
+        gridState: [ gridState,  setGridState]
       } = useContext(StoreContext);
     const [algorithm, setAlgorithm] = useState('MAZE !');
 
@@ -38,6 +38,7 @@ export default function Mazes() {
 			for(let [nodekey, node] of row.entries()){
 				setGrid( (prev) => new Map(prev).set(rowkey, new Map(prev.get(rowkey))
 							.set(nodekey, {...node, isWall: true,})) );
+				setGridState({...gridState, hasWall: true});
 			}
 		}
 

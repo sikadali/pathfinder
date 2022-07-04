@@ -26,7 +26,7 @@ const StoreProvider = ({ children }) => {
 	useEffect(() => {
 		const g = getInitialGrid();
 		setGrid(g);
-        setGridState({hasStart: false, hasEnd: false});
+        setGridState({hasStart: false, hasEnd: false, hasWall: false});
 	}, [])
 
     
