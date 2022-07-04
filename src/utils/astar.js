@@ -6,7 +6,7 @@ export const astar = (gridMap) => {
     openList.push(startNode)
 
     while (!!openList.length){
-        // take nodeU, the node from openList with the biggest heuristic (manhattan distance in this case)
+        // take nodeU, the node from openList with the lowest cost
         sortOpenListByF(openList)
         const currentNode = openList.shift()
 
@@ -123,4 +123,11 @@ const heuristicManhattan = (nodeA, nodeB) => {
     var d1 = Math.abs (nodeB.row - nodeA.row);
     var d2 = Math.abs (nodeB.col - nodeA.col);
     return d1 + d2;
+}
+
+const heuristicEuclidean = (nodeA, nodeB) => {
+    // This is the Manhattan distance
+    var d1 = Math.abs (nodeB.row - nodeA.row);
+    var d2 = Math.abs (nodeB.col - nodeA.col);
+    return Math.sqrt(d1*d1 + d2*d2);
 }
