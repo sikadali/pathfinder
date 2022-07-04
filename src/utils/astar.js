@@ -44,7 +44,6 @@ export const astar = (gridMap) => {
                 neighbor.f = neighbor.cost + neighbor.heuristic;
             }
         }
-        currentNode.isVisited = true; //after, try to comment this line
         closedList.push(currentNode)
 
         // if the node taken is the endNode then END
@@ -67,13 +66,13 @@ const mapToArray = (gridMap) => {
         const currentRow = [];
         for(let node of row.values()){
             if(node.isStart){
-                startNode = {...node, cost: 0, heuristic: 0, f: 0, isVisited: false};
-				currentRow.push({...node, cost: 0, heuristic: 0, f: 0, isVisited: false});
-				nodes.push({...node, cost: 0, heuristic: 0, f: 0, isVisited: false});
+                startNode = {...node, cost: 0, heuristic: 0, f: 0};
+				currentRow.push({...node, cost: 0, heuristic: 0, f: 0});
+				nodes.push({...node, cost: 0, heuristic: 0, f: 0});
             }
 			else{
-				currentRow.push({...node, cost: 0, heuristic: 0, f: 0, isVisited: false});
-				nodes.push({...node, cost: 0, heuristic: 0, f: 0, isVisited: false});
+				currentRow.push({...node, cost: 0, heuristic: 0, f: 0});
+				nodes.push({...node, cost: 0, heuristic: 0, f: 0});
 			}
 
             if(node.isEnd){
@@ -102,7 +101,7 @@ const getNeighbors = (node, grid) => {
 	}
 
 	return (
-		neighbors //.filter(neighbor => !neighbor.isVisited)
+		neighbors
 	);
 }
 

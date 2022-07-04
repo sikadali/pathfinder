@@ -1,11 +1,12 @@
-//RANDOMIZED KRUSKAL ALGORITHM : essayer la version avec la moitie des cellules deja ouvertes !!!!!
+//RANDOMIZED KRUSKAL ALGORITHM
 export function kruskal(mazeMap) {
     
-    const {maze, cells, startNode, endNode, hasStart, hasEnd} = mapToArray(mazeMap);
+    const { maze } = mapToArray(mazeMap);
 	const openEdgesInOrder = [];
 
     //Step 1 : make the edges set; 
-        //an edge is a linear(to say not diagonal) combinaison of three nodes, and is only 'perpendicularly' adjacent to others edges
+        // an edge is a linear(to avoid saying diagonal) combinaison of three nodes, 
+        // and is only 'perpendicularly' adjacent to others edges
     let edges = setEdges(maze);
 
     //Step 2 : While the set of edges is not empty
@@ -16,7 +17,7 @@ export function kruskal(mazeMap) {
         edges.splice(index, 1);
         
 
-        //If cells are not already in the same bucket: Connect them !!!PROBLEM HERE!!!
+        //If cells are not already in the same bucket: Connect them
         if (maze[edge.first.row][edge.first.col].kruskalID !== maze[edge.second.row][edge.second.col].kruskalID){
             //merge edges in the maze
             mergeKruskalGroup(edge, maze);
@@ -47,26 +48,6 @@ const mergeKruskalGroup = (edge, maze) => {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
-function shuffle(array) {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-  
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-  
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-  
-    return array;
-}
-
 
 const setEdges = (maze) => {
     const rows = maze.length;

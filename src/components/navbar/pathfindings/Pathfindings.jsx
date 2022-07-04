@@ -23,6 +23,10 @@ export default function Pathfindings() {
         visualizeAlgorithm(gridState, grid, 1);
         setAlgorithm('PATH !');
       }
+      if (algorithm === 'BFS PATH !'){
+        visualizeAlgorithm(gridState, grid, 2);
+        setAlgorithm('PATH !');
+      }
     }
 
     const selectAlgorithm = (algorithm) => {

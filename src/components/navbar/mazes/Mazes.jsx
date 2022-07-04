@@ -41,14 +41,14 @@ export default function Mazes() {
 			}
 		}
 
-		for (let i = 0; i < openEdgesInOrder.length; i++) {
+		for (let openEdge of openEdgesInOrder) {
 			setTimeout(() => {
-				setGrid( (prev) => new Map(prev).set(openEdgesInOrder[i].center.row, new Map(prev.get(openEdgesInOrder[i].center.row))
-							.set(openEdgesInOrder[i].center.col, {...openEdgesInOrder[i].center, isWall: false,})) );
-				setGrid( (prev) => new Map(prev).set(openEdgesInOrder[i].first.row, new Map(prev.get(openEdgesInOrder[i].first.row))
-							.set(openEdgesInOrder[i].first.col, {...openEdgesInOrder[i].first, isWall: false,})) );
-				setGrid( (prev) => new Map(prev).set(openEdgesInOrder[i].second.row, new Map(prev.get(openEdgesInOrder[i].second.row))
-							.set(openEdgesInOrder[i].second.col, {...openEdgesInOrder[i].second, isWall: false,})) );
+				setGrid( (prev) => new Map(prev).set(openEdge.center.row, new Map(prev.get(openEdge.center.row))
+							.set(openEdge.center.col, {...openEdge.center, isWall: false,})) );
+				setGrid( (prev) => new Map(prev).set(openEdge.first.row, new Map(prev.get(openEdge.first.row))
+							.set(openEdge.first.col, {...openEdge.first, isWall: false,})) );
+				setGrid( (prev) => new Map(prev).set(openEdge.second.row, new Map(prev.get(openEdge.second.row))
+							.set(openEdge.second.col, {...openEdge.second, isWall: false,})) );
 			}, 5)
 		}
 	}

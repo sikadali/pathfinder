@@ -14,6 +14,10 @@ export const visualizeAlgorithm = (gridState, grid, algoIndex) => {
                 console.log('Running A* Algorithm');
                 visitedNodesInOrder = astar(grid);
                 break;
+            case 2:
+                console.log('Running DFS Algorithm');
+                // visitedNodesInOrder = dfs(grid);
+                break;
             default:
               console.log(`There is no algorithm with this index`);
           }
